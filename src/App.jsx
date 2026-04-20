@@ -5,13 +5,26 @@ import WorkSpace from "./components/Workspace";
 import { DataContext } from "./DataContext";
 
 function App() {
-  const [dataState, setDataState] = useState([]);
+  const [dataState, setDataState] = useState();
   const [selectedBoardIndex, setSelectedBoardIndex] = useState(0);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("data");
+    if (savedData) {
+      setDataState(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!dataState) return;
+
+    localStorage.setItem("data", JSON.stringify(dataState));
+  }, [dataState]);
 
   return (
     <DataContext.Provider
       value={{
-        data: dataState,
+        data: dataState || [],
         setData: setDataState,
         selectedBoardIndex,
         setSelectedBoardIndex,
@@ -21,7 +34,7 @@ function App() {
         <Header />
         <div className="flex flex-1">
           <SideMenu />
-          <WorkSpace columns={dataState[selectedBoardIndex]?.columns} />
+          <WorkSpace />
         </div>
       </div>
     </DataContext.Provider>
