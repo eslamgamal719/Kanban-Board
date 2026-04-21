@@ -23,7 +23,7 @@
   - [x] Cache boards in local storage
   - [x] Edit board
   - [x] Add new task
-  - [ ] Delete task
+  - [x] Delete task
   - [ ] Add new Column
   - [ ] Delete Column
   - [ ] Edit task
