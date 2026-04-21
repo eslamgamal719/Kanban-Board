@@ -1,6 +1,7 @@
 import { DataContext } from "@/DataContext";
 import Card from "./Card";
 import { useContext } from "react";
+import { produce } from "immer";
 
 const Column = ({ id, title, tasks = [] }) => {
   const { selectedBoardIndex, data, setData } = useContext(DataContext);
@@ -22,14 +23,11 @@ const Column = ({ id, title, tasks = [] }) => {
   const addNewTaskHandler = () => {
     const newTask = createNewTask();
     const newColumns = createNewColumnsArray(data, selectedBoardIndex, newTask);
-    setData((prev) => {
-      const newData = [...prev];
-      newData[selectedBoardIndex] = {
-        ...newData[selectedBoardIndex],
-        columns: newColumns,
-      };
-      return newData;
-    });
+    setData((prev) =>
+      produce(prev, (draft) => {
+        draft[selectedBoardIndex].columns = newColumns;
+      }),
+    );
   };
 
   return (
