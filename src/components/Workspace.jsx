@@ -25,12 +25,13 @@ const Workspace = () => {
   return (
     <div className="bg-light-grey flex h-[calc(100vh-97px)] flex-1 gap-6 overflow-auto p-6">
       {columns?.length &&
-        columns.map((item) => (
+        columns.map((item, index) => (
           <Column
             key={item.id}
             id={item.id}
             title={item.title}
             tasks={item.tasks}
+            columnIndex={index}
           />
         ))}
       <button

@@ -24,7 +24,7 @@
   - [x] Edit board
   - [x] Add new task
   - [x] Delete task
-  - [ ] Add new Column
-  - [ ] Delete Column
-  - [ ] Edit task
+  - [x] Add new Column
+  - [x] Delete Column
+  - [x] Edit task
   - [ ] Drag and drop tasks

@@ -3,7 +3,7 @@ import Card from "./Card";
 import { useContext } from "react";
 import { produce } from "immer";
 
-const Column = ({ id, title, tasks = [] }) => {
+const Column = ({ id, title, tasks = [], columnIndex }) => {
   const { selectedBoardIndex, data, setData } = useContext(DataContext);
 
   const createNewTask = () => ({ id: Date.now(), title: "New Task" });
@@ -54,12 +54,14 @@ const Column = ({ id, title, tasks = [] }) => {
         </button>
       </h2>
       <div className="mb-5 flex flex-col gap-5">
-        {tasks.map((item) => (
+        {tasks.map((item, index) => (
           <Card
             key={item.id}
             title={item.title}
             cardId={item.id}
             columnId={id}
+            cardIndex={index}
+            columnIndex={columnIndex}
           />
         ))}
       </div>
